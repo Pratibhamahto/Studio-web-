@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Luminary Studio — Thank You</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1208; --cream: #f5f0e8; --warm: #e8dcc8;
+      --gold: #c9933a; --rust: #b84c2e; --sage: #6b7c5c;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--ink);
+      color: var(--cream);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem;
+    }
+
+    .icon {
+      width: 80px; height: 80px;
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 3rem;
+    }
+
+    .icon svg { width: 32px; }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 em { font-style: italic; color: var(--gold); }
+
+    p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      opacity: 0.6;
+      font-weight: 300;
+      max-width: 480px;
+      margin: 0 auto 1rem;
+    }
+
+    .links {
+      display: flex; gap: 1.5rem; justify-content: center; margin-top: 3rem; flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block; padding: 0.9rem 2.2rem;
+      text-decoration: none; font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      border: 2px solid rgba(255,255,255,0.3); color: var(--cream);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn:hover { border-color: var(--gold); background: rgba(201,147,58,0.1); }
+    .btn-fill { background: var(--gold); border-color: var(--gold); }
+    .btn-fill:hover { background: var(--rust); border-color: var(--rust); }
+
+    .divider {
+      width: 60px; height: 1px; background: rgba(255,255,255,0.15);
+      margin: 3rem auto;
+    }
+
+    .tagline {
+      font-family: 'DM Serif Display', serif;
+      font-size: 0.9rem;
+      font-style: italic;
+      opacity: 0.3;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="icon">
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polyline points="5,17 13,24 27,9" stroke="#c9933a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <h1>We've got<br>your <em>message.</em></h1>
+
+  <p>Thank you for reaching out to Luminary Studio. Your enquiry has been received and we'll be in touch within 2 business days.</p>
+
+  <p>In the meantime, feel free to explore more of our work or read about our process.</p>
+
+  <div class="links">
+    <a href="index.html" class="btn btn-fill">Back to Home</a>
+    <a href="services.html" class="btn">Our Services</a>
+    <a href="about.html" class="btn">Meet the Team</a>
+  </div>
+
+  <div class="divider"></div>
+  <p class="tagline">Luminary Studio — Jamshedpur, India</p>
+
+</body>
+</html>
