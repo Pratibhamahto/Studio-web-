@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Luminary Studio — Contact Us</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1208; --cream: #f5f0e8; --warm: #e8dcc8;
+      --gold: #c9933a; --rust: #b84c2e; --sage: #6b7c5c; --light-sage: #d4dbc8;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 4rem; background: var(--cream); border-bottom: 1px solid var(--warm);
+    }
+    .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--ink); text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--ink); font-size: 0.88rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.7; transition: opacity 0.2s; }
+    .nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--gold); }
+
+    /* HERO */
+    .contact-hero {
+      padding: 12rem 4rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+      background: var(--cream);
+    }
+
+    .hero-info { position: sticky; top: 9rem; }
+    .eyebrow { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust); margin-bottom: 1.5rem; }
+    .hero-info h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.8rem, 4.5vw, 4.5rem); line-height: 1.05; margin-bottom: 2rem; }
+    .hero-info p { font-size: 1rem; line-height: 1.8; color: #4a3f2e; font-weight: 300; max-width: 400px; margin-bottom: 3rem; }
+
+    .contact-details { display: flex; flex-direction: column; gap: 2rem; }
+    .contact-item { border-left: 3px solid var(--gold); padding-left: 1.5rem; }
+    .contact-label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.5; margin-bottom: 0.4rem; }
+    .contact-value { font-size: 1rem; font-weight: 400; }
+    .contact-value a { color: var(--ink); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+    .contact-value a:hover { border-bottom-color: var(--gold); }
+
+    /* FORM */
+    .form-wrapper {
+      background: var(--ink);
+      padding: 4rem;
+      color: var(--cream);
+    }
+
+    .form-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-subtitle {
+      font-size: 0.88rem;
+      opacity: 0.5;
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+
+    .form-group {
+      margin-bottom: 1.8rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 0.6rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      padding: 0.9rem 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--gold);
+    }
+
+    select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9933a' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+
+    select option { background: #2a2010; color: var(--cream); }
+
+    textarea { resize: vertical; min-height: 120px; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.88rem;
+      opacity: 0.75;
+      cursor: pointer;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    input[type="checkbox"] {
+      width: 16px; height: 16px;
+      accent-color: var(--gold);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .submit-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      gap: 1.5rem;
+    }
+
+    .submit-note { font-size: 0.78rem; opacity: 0.4; line-height: 1.5; max-width: 220px; }
+
+    button[type="submit"] {
+      background: var(--gold);
+      border: 2px solid var(--gold);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1rem 2.8rem;
+      cursor: pointer;
+      transition: background 0.25s, border-color 0.25s;
+      white-space: nowrap;
+    }
+
+    button[type="submit"]:hover {
+      background: var(--rust);
+      border-color: var(--rust);
+    }
+
+    /* FAQ */
+    .faq {
+      padding: 8rem 4rem;
+      background: var(--warm);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+    }
+
+    .faq h2 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 3vw, 3rem); margin-bottom: 3rem; }
+
+    .faq-list { display: flex; flex-direction: column; gap: 0; }
+
+    details {
+      border-top: 1px solid rgba(26,18,8,0.15);
+      padding: 1.5rem 0;
+    }
+
+    details:last-child { border-bottom: 1px solid rgba(26,18,8,0.15); }
+
+    summary {
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::after {
+      content: '+';
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--gold);
+      transition: transform 0.2s;
+    }
+
+    details[open] summary::after { content: '−'; }
+
+    details p { font-size: 0.9rem; line-height: 1.75; opacity: 0.65; font-weight: 300; margin-top: 1rem; }
+
+    .faq-aside {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .faq-aside p { font-size: 1rem; line-height: 1.8; opacity: 0.7; font-weight: 300; }
+
+    .btn {
+      display: inline-block; padding: 0.9rem 2rem; text-decoration: none;
+      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      border: 2px solid var(--ink); color: var(--ink); transition: background 0.25s, color 0.25s;
+      align-self: flex-start;
+    }
+    .btn:hover { background: var(--ink); color: var(--cream); }
+
+    footer {
+      background: var(--ink); color: var(--cream);
+      padding: 4rem; display: flex; justify-content: space-between; align-items: center;
+    }
+    footer .logo { font-family: 'DM Serif Display', serif; font-size: 1.3rem; }
+    footer p { font-size: 0.8rem; opacity: 0.4; }
+    footer nav a { color: var(--cream); text-decoration: none; font-size: 0.8rem; opacity: 0.5; margin-left: 2rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    footer nav a:hover { opacity: 1; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Luminary Studio</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="contact-hero">
+
+    <!-- LEFT: Info -->
+    <div class="hero-info">
+      <p class="eyebrow">Let's Talk</p>
+      <h1>Tell us about<br>your project.</h1>
+      <p>Whether you have a fully formed brief or just an inkling of an idea, we'd love to hear from you. We respond to all enquiries within 48 hours.</p>
+
+      <div class="contact-details">
+        <div class="contact-item">
+          <p class="contact-label">Email</p>
+          <p class="contact-value"><a href="mailto:hello@luminarystudio.in">hello@luminarystudio.in</a></p>
+        </div>
+        <div class="contact-item">
+          <p class="contact-label">Phone</p>
+          <p class="contact-value"><a href="tel:+916578901234">+91 65789 01234</a></p>
+        </div>
+        <div class="contact-item">
+          <p class="contact-label">Studio Address</p>
+          <p class="contact-value">12 Bistupur Main Road,<br>Jamshedpur — 831001</p>
+        </div>
+        <div class="contact-item">
+          <p class="contact-label">Office Hours</p>
+          <p class="contact-value">Mon–Fri, 10am–6pm IST</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Form — has its own URL: contact.html#form -->
+    <div class="form-wrapper" id="form">
+      <h2 class="form-title">Project Enquiry</h2>
+      <p class="form-subtitle">Fill in the details below and we'll be in touch shortly.</p>
+
+      <form method="POST" action="thank-you.html">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="first-name">First Name *</label>
+            <input type="text" id="first-name" name="first_name" placeholder="Arjun" required />
+          </div>
+          <div class="form-group">
+            <label for="last-name">Last Name *</label>
+            <input type="text" id="last-name" name="last_name" placeholder="Mehta" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" placeholder="arjun@company.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" />
+        </div>
+
+        <div class="form-group">
+          <label for="company">Company / Brand Name</label>
+          <input type="text" id="company" name="company" placeholder="Your Company" />
+        </div>
+
+        <div class="form-group">
+          <label for="service">Service Interested In *</label>
+          <select id="service" name="service" required>
+            <option value="" disabled selected>Select a service…</option>
+            <option value="brand">Brand Identity</option>
+            <option value="web">Web Design</option>
+            <option value="print">Print &amp; Editorial</option>
+            <option value="motion">Motion &amp; Animation</option>
+            <option value="other">Other / Not Sure Yet</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="budget">Approximate Budget</label>
+          <select id="budget" name="budget">
+            <option value="" disabled selected>Select a range…</option>
+            <option value="under50k">Under ₹50,000</option>
+            <option value="50k-1l">₹50,000 – ₹1 Lakh</option>
+            <option value="1l-3l">₹1 – 3 Lakhs</option>
+            <option value="3l-10l">₹3 – 10 Lakhs</option>
+            <option value="over10l">Over ₹10 Lakhs</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Services You May Need (check all that apply)</label>
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" name="needs" value="strategy"> Brand Strategy
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="needs" value="copywriting"> Copywriting
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="needs" value="photography"> Photography Direction
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="needs" value="dev"> Development Handoff
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Tell Us About Your Project *</label>
+          <textarea id="message" name="message" rows="5" placeholder="Give us a brief overview — what are you trying to achieve, who is your audience, and what makes this project exciting?" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="timeline">Desired Timeline</label>
+          <input type="text" id="timeline" name="timeline" placeholder="e.g. Launch by June 2026" />
+        </div>
+
+        <div class="form-group">
+          <label for="how">How Did You Hear About Us?</label>
+          <select id="how" name="how">
+            <option value="" disabled selected>Select one…</option>
+            <option value="referral">Referral / Word of Mouth</option>
+            <option value="google">Google Search</option>
+            <option value="instagram">Instagram</option>
+            <option value="behance">Behance / Dribbble</option>
+            <option value="linkedin">LinkedIn</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="submit-row">
+          <p class="submit-note">We reply to all enquiries within 2 business days.</p>
+          <button type="submit">Send Enquiry →</button>
+        </div>
+
+      </form>
+    </div>
+
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div>
+      <h2>Frequently<br>asked questions.</h2>
+      <div class="faq-list">
+        <details>
+          <summary>How long does a brand project take?</summary>
+          <p>Most brand identity projects run 6–12 weeks depending on scope and feedback cycles. We'll give you a detailed timeline at kickoff.</p>
+        </details>
+        <details>
+          <summary>Do you work with clients outside Jamshedpur?</summary>
+          <p>Absolutely. The majority of our clients are remote. We work with brands across India and internationally via video calls and our shared project portal.</p>
+        </details>
+        <details>
+          <summary>What do you need from us to get started?</summary>
+          <p>A completed enquiry form is the best first step. Once we review it, we'll schedule a discovery call to dive deeper into your goals.</p>
+        </details>
+        <details>
+          <summary>Do you offer payment in installments?</summary>
+          <p>Yes. We typically split payments into 50% upfront and 50% on delivery, though we're flexible for larger retainer engagements.</p>
+        </details>
+        <details>
+          <summary>Can I see examples of your past work?</summary>
+          <p>Of course. Reach out via the enquiry form and we'll share a tailored case study pack relevant to your industry and project type.</p>
+        </details>
+      </div>
+    </div>
+
+    <div class="faq-aside">
+      <p>Still have questions? Don't hesitate to reach out directly. We're a small, approachable team and we love a good conversation about design.</p>
+      <p>You can also email us directly at <strong>hello@luminarystudio.in</strong> — no contact form required.</p>
+      <a href="services.html" class="btn">View Our Services</a>
+    </div>
+  </section>
+
+  <footer>
+    <div>
+      <div class="logo">Luminary Studio</div>
+      <p style="margin-top:0.5rem;">© 2026 All rights reserved.</p>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </footer>
+
+</body>
+</html>
