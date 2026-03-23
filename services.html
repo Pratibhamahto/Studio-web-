@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Luminary Studio — Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1208;
+      --cream: #f5f0e8;
+      --warm: #e8dcc8;
+      --gold: #c9933a;
+      --rust: #b84c2e;
+      --sage: #6b7c5c;
+      --light-sage: #d4dbc8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: var(--cream);
+      border-bottom: 1px solid var(--warm);
+    }
+    .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--ink); text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--ink); font-size: 0.88rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.7; transition: opacity 0.2s; }
+    .nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--gold); }
+
+    .page-hero {
+      padding: 12rem 4rem 6rem;
+      background: var(--ink);
+      color: var(--cream);
+    }
+    .page-hero .eyebrow { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+    .page-hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(3rem, 5vw, 5rem); line-height: 1.05; }
+    .page-hero h1 em { font-style: italic; color: var(--light-sage); }
+
+    .services-detail {
+      padding: 0 4rem 8rem;
+      background: var(--ink);
+    }
+
+    .service-row {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      padding: 5rem 0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: var(--cream);
+      align-items: start;
+    }
+
+    .service-row-num {
+      font-size: 4rem;
+      font-family: 'DM Serif Display', serif;
+      color: var(--gold);
+      opacity: 0.4;
+      line-height: 1;
+    }
+
+    .service-row-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-row-desc {
+      font-size: 1rem;
+      line-height: 1.8;
+      opacity: 0.65;
+      font-weight: 300;
+      max-width: 580px;
+      margin-bottom: 2rem;
+    }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .tag {
+      padding: 0.4rem 1rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    .pricing {
+      padding: 8rem 4rem;
+      background: var(--warm);
+    }
+
+    .pricing h2 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem,3.5vw,3.5rem); margin-bottom: 4rem; text-align: center; }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .pricing-card {
+      background: var(--cream);
+      padding: 3rem 2.5rem;
+      border: 1px solid var(--warm);
+      position: relative;
+    }
+
+    .pricing-card.featured {
+      background: var(--gold);
+      color: #fff;
+    }
+
+    .plan-name { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem; opacity: 0.7; }
+    .plan-price { font-family: 'DM Serif Display', serif; font-size: 3rem; margin-bottom: 0.5rem; }
+    .plan-period { font-size: 0.8rem; opacity: 0.6; margin-bottom: 2rem; }
+    .plan-features { list-style: none; margin-bottom: 2.5rem; }
+    .plan-features li { font-size: 0.9rem; padding: 0.6rem 0; border-bottom: 1px solid rgba(0,0,0,0.08); opacity: 0.8; }
+    .pricing-card.featured .plan-features li { border-bottom-color: rgba(255,255,255,0.2); }
+
+    .btn {
+      display: inline-block; padding: 0.9rem 2rem; text-decoration: none;
+      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      border: 2px solid var(--ink); color: var(--ink); transition: background 0.25s, color 0.25s;
+    }
+    .btn:hover { background: var(--ink); color: var(--cream); }
+    .btn-white-outline { border-color: #fff; color: #fff; }
+    .btn-white-outline:hover { background: #fff; color: var(--gold); }
+
+    .cta {
+      background: var(--gold);
+      padding: 7rem 4rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 3rem;
+    }
+    .cta-title { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 3.5vw, 3.5rem); color: #fff; max-width: 500px; line-height: 1.15; }
+    .btn-white { background:#fff; border:2px solid #fff; color:var(--gold); white-space:nowrap; font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase; padding:1.1rem 2.6rem; text-decoration:none; font-weight:500; display:inline-block; transition:background 0.2s, color 0.2s; }
+    .btn-white:hover { background:var(--ink); border-color:var(--ink); color:#fff; }
+
+    footer {
+      background: var(--ink); color: var(--cream);
+      padding: 4rem; display: flex; justify-content: space-between; align-items: center;
+    }
+    footer .logo { font-family: 'DM Serif Display', serif; font-size: 1.3rem; }
+    footer p { font-size: 0.8rem; opacity: 0.4; letter-spacing: 0.06em; }
+    footer nav a { color:var(--cream); text-decoration:none; font-size:0.8rem; opacity:0.5; margin-left:2rem; letter-spacing:0.08em; text-transform:uppercase; }
+    footer nav a:hover { opacity:1; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Luminary Studio</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="page-hero">
+    <p class="eyebrow">What We Offer</p>
+    <h1>Services crafted<br>with <em>purpose.</em></h1>
+  </section>
+
+  <section class="services-detail">
+    <div class="service-row">
+      <div class="service-row-num">01</div>
+      <div>
+        <h2 class="service-row-name">Brand Identity</h2>
+        <p class="service-row-desc">From the first sketch to final brand guidelines, we craft visual identities that carry weight and meaning. Your brand should feel inevitable — like it could have been no other way.</p>
+        <div class="tags">
+          <span class="tag">Logo Design</span>
+          <span class="tag">Typography</span>
+          <span class="tag">Color Systems</span>
+          <span class="tag">Brand Guidelines</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-row">
+      <div class="service-row-num">02</div>
+      <div>
+        <h2 class="service-row-name">Web Design</h2>
+        <p class="service-row-desc">Digital experiences that balance aesthetic ambition with practical clarity. We design websites that delight users and convert visitors — without sacrificing either goal.</p>
+        <div class="tags">
+          <span class="tag">UI/UX Design</span>
+          <span class="tag">Prototyping</span>
+          <span class="tag">Design Systems</span>
+          <span class="tag">Responsive</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-row">
+      <div class="service-row-num">03</div>
+      <div>
+        <h2 class="service-row-name">Print &amp; Editorial</h2>
+        <p class="service-row-desc">We bring decades of typographic tradition to every printed piece. Catalogues, annual reports, books, and packaging designed with the same precision as the greatest publishing houses.</p>
+        <div class="tags">
+          <span class="tag">Catalogues</span>
+          <span class="tag">Packaging</span>
+          <span class="tag">Annual Reports</span>
+          <span class="tag">Books</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-row">
+      <div class="service-row-num">04</div>
+      <div>
+        <h2 class="service-row-name">Motion &amp; Animation</h2>
+        <p class="service-row-desc">Still images tell a story. Moving images live it. We produce motion graphics and brand animations that bring your identity to life across presentations, social, and digital channels.</p>
+        <div class="tags">
+          <span class="tag">Motion Graphics</span>
+          <span class="tag">Brand Animation</span>
+          <span class="tag">Explainer Videos</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing">
+    <h2>Simple, honest pricing.</h2>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <p class="plan-name">Starter</p>
+        <p class="plan-price">₹49k</p>
+        <p class="plan-period">one-time project</p>
+        <ul class="plan-features">
+          <li>Logo + 2 variations</li>
+          <li>Color palette</li>
+          <li>1 typography pair</li>
+          <li>PDF brand guide</li>
+        </ul>
+        <a href="contact.html" class="btn">Enquire</a>
+      </div>
+      <div class="pricing-card featured">
+        <p class="plan-name">Studio</p>
+        <p class="plan-price">₹1.4L</p>
+        <p class="plan-period">one-time project</p>
+        <ul class="plan-features">
+          <li>Full brand identity</li>
+          <li>Website design (5 pg)</li>
+          <li>Social templates</li>
+          <li>Brand guidelines doc</li>
+        </ul>
+        <a href="contact.html" class="btn btn-white-outline">Enquire</a>
+      </div>
+      <div class="pricing-card">
+        <p class="plan-name">Enterprise</p>
+        <p class="plan-price">Custom</p>
+        <p class="plan-period">tailored scope</p>
+        <ul class="plan-features">
+          <li>Brand strategy</li>
+          <li>Full digital suite</li>
+          <li>Motion &amp; print</li>
+          <li>Ongoing retainer</li>
+        </ul>
+        <a href="contact.html" class="btn">Let's Talk</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2 class="cta-title">Every great brand starts with a conversation.</h2>
+    <a href="contact.html" class="btn-white">Start a Project →</a>
+  </section>
+
+  <footer>
+    <div>
+      <div class="logo">Luminary Studio</div>
+      <p style="margin-top:0.5rem;">© 2026 All rights reserved.</p>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </footer>
+
+</body>
+</html>
