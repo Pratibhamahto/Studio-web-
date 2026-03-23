@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Luminary Studio — Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1208;
+      --cream: #f5f0e8;
+      --warm: #e8dcc8;
+      --gold: #c9933a;
+      --rust: #b84c2e;
+      --sage: #6b7c5c;
+      --light-sage: #d4dbc8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: var(--cream);
+      border-bottom: 1px solid var(--warm);
+    }
+
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .nav-links a:hover { opacity: 1; }
+    .nav-links a.active { opacity: 1; color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 5rem;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 4rem 6rem 4rem;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      line-height: 1.05;
+      margin-bottom: 2rem;
+      color: var(--ink);
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: #4a3f2e;
+      max-width: 420px;
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 2.4rem;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 2px solid var(--ink);
+      color: var(--ink);
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .btn:hover {
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .btn-fill {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #fff;
+    }
+
+    .btn-fill:hover {
+      background: var(--rust);
+      border-color: var(--rust);
+    }
+
+    .hero-right {
+      background: var(--sage);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-art {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-art svg {
+      width: 70%;
+      opacity: 0.25;
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 3rem;
+      right: 3rem;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      line-height: 1.6;
+    }
+
+    /* SERVICES */
+    .services {
+      padding: 8rem 4rem;
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 5rem;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      line-height: 1.1;
+    }
+
+    .section-note {
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      max-width: 200px;
+      text-align: right;
+      line-height: 1.6;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.1);
+    }
+
+    .service-card {
+      background: var(--ink);
+      padding: 3rem 2.5rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: background 0.3s;
+    }
+
+    .service-card:hover { background: #2a2010; }
+
+    .service-num {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    .service-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .service-desc {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      opacity: 0.6;
+      font-weight: 300;
+    }
+
+    /* ABOUT STRIP */
+    .about-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 60vh;
+    }
+
+    .about-img {
+      background: var(--light-sage);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-img svg { width: 60%; opacity: 0.4; }
+
+    .about-text {
+      padding: 6rem 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .about-text .section-title { color: var(--ink); margin-bottom: 2rem; }
+
+    .about-text p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #4a3f2e;
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    /* TESTIMONIAL */
+    .testimonial {
+      background: var(--warm);
+      padding: 8rem 4rem;
+      text-align: center;
+    }
+
+    .testimonial blockquote {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.8rem);
+      font-style: italic;
+      line-height: 1.3;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      color: var(--ink);
+    }
+
+    .testimonial cite {
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--rust);
+      font-style: normal;
+    }
+
+    /* CTA */
+    .cta {
+      background: var(--gold);
+      padding: 7rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+    }
+
+    .cta-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3.5rem);
+      color: #fff;
+      max-width: 500px;
+      line-height: 1.15;
+    }
+
+    .btn-white {
+      background: #fff;
+      border-color: #fff;
+      color: var(--gold);
+      white-space: nowrap;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 1.1rem 2.6rem;
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-block;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-white:hover { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+    /* FOOTER */
+    footer {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+    }
+
+    footer p {
+      font-size: 0.8rem;
+      opacity: 0.4;
+      letter-spacing: 0.06em;
+    }
+
+    footer nav a {
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.8rem;
+      opacity: 0.5;
+      margin-left: 2rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    footer nav a:hover { opacity: 1; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Luminary Studio</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Creative Design Studio</p>
+      <h1 class="hero-title">We craft<br><em>stories</em><br>that endure.</h1>
+      <p class="hero-desc">
+        Luminary Studio partners with visionary brands to create identities,
+        experiences, and narratives that leave lasting impressions.
+      </p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="services.html" class="btn btn-fill">Our Work</a>
+        <a href="contact.html" class="btn">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-art">
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="90" stroke="white" stroke-width="1"/>
+          <circle cx="100" cy="100" r="60" stroke="white" stroke-width="1"/>
+          <circle cx="100" cy="100" r="30" stroke="white" stroke-width="1"/>
+          <line x1="10" y1="100" x2="190" y2="100" stroke="white" stroke-width="0.5"/>
+          <line x1="100" y1="10" x2="100" y2="190" stroke="white" stroke-width="0.5"/>
+          <line x1="36" y1="36" x2="164" y2="164" stroke="white" stroke-width="0.5"/>
+          <line x1="164" y1="36" x2="36" y2="164" stroke="white" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <div class="hero-badge">Est.<br>2018<br>——<br>Award<br>Winning</div>
+    </div>
+  </section>
+
+  <section class="services">
+    <div class="section-header">
+      <h2 class="section-title">What we<br>do best</h2>
+      <p class="section-note">Craft &amp; precision in everything we build</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <p class="service-num">01</p>
+        <h3 class="service-name">Brand Identity</h3>
+        <p class="service-desc">Logos, palettes, and voice that speak before you do. We build brands that are immediately recognizable and endlessly memorable.</p>
+      </div>
+      <div class="service-card">
+        <p class="service-num">02</p>
+        <h3 class="service-name">Web Design</h3>
+        <p class="service-desc">Pixel-perfect digital experiences crafted with intention. Performance, accessibility, and beauty — no compromises.</p>
+      </div>
+      <div class="service-card">
+        <p class="service-num">03</p>
+        <h3 class="service-name">Print &amp; Editorial</h3>
+        <p class="service-desc">Catalogs, books, and collateral with typographic finesse. We bring the same rigor to ink and paper as we do to pixels.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-strip">
+    <div class="about-img">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="20" y="20" width="160" height="160" stroke="#6b7c5c" stroke-width="1"/>
+        <rect x="40" y="40" width="120" height="120" stroke="#6b7c5c" stroke-width="1"/>
+        <rect x="70" y="70" width="60" height="60" fill="#6b7c5c" fill-opacity="0.3"/>
+        <circle cx="100" cy="100" r="20" stroke="#6b7c5c" stroke-width="2"/>
+      </svg>
+    </div>
+    <div class="about-text">
+      <h2 class="section-title">A studio built<br>on conviction.</h2>
+      <p>Founded in 2018, Luminary Studio was born from a simple belief: that design is not decoration — it is communication distilled to its most powerful form.</p>
+      <p>Our small, focused team brings together decades of experience across branding, print, digital, and motion to serve clients who demand excellence.</p>
+      <a href="about.html" class="btn" style="align-self:flex-start;margin-top:1rem;">Meet the Team</a>
+    </div>
+  </section>
+
+  <section class="testimonial">
+    <blockquote>
+      "Luminary didn't just design our brand — they helped us understand who we truly are."
+    </blockquote>
+    <cite>— Priya Mehta, Founder of Verdant Co.</cite>
+  </section>
+
+  <section class="cta">
+    <h2 class="cta-title">Ready to build something remarkable?</h2>
+    <a href="contact.html" class="btn-white">Start a Project →</a>
+  </section>
+
+  <footer>
+    <div>
+      <div class="logo">Luminary Studio</div>
+      <p style="margin-top:0.5rem;">© 2026 All rights reserved.</p>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </footer>
+
+</body>
+</html>
